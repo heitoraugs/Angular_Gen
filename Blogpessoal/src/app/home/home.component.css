@@ -1,5 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Titillium+Web&display=swap');
+
+body{
+    background-color: #F2F2F2;
+}
+/*FORMATAÇÃO DE TEXTO*/
+.fontTexto{
+    font-family: 'Titillium Web', sans-serif;
+    letter-spacing: 1px;
+}
+
+.fontTitulo{
+    font-family: 'Lato', sans-serif;;
+}
+
+/*IMAGEM PARALLAX*/
 .parallax{
-    background-image: url('https://i.imgur.com/PEoH72I.jpg');
+    background-image: url('https://images.pexels.com/photos/2255441/pexels-photo-2255441.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
 
     min-height: 500px;
   
@@ -7,4 +23,15 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+/*BOTÂO VER FEED*/
+.botao{
+    background-color: #D93D86;
+    border-radius: 12px;
+    padding: 16px 40px;
+    color: white;
+}
+.botao:hover{
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
