@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { TemaService } from './../service/tema.service';
+import { PostagemService } from './../service/postagem.service';
+import { Postagem } from './../model/Postagem';
+import { Tema } from './../model/Tema';
+
 
 @Component({
   selector: 'app-feed',
@@ -7,10 +12,60 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FeedComponent implements OnInit {
 
-  constructor() { }
+  key='data'
+  reverse=true
+
+  postagem: Postagem = new Postagem()
+  listaPostagens: Postagem[]
+  
+  tema: Tema = new Tema()
+  listaTemas: Tema[]
+  idTema: number
+
+  constructor(
+    private postagemService: PostagemService,
+    private temaService: TemaService
+  ) { }
 
   ngOnInit(): void {
     window.scroll(0,0) //Quando iniciar a página, estará nas coodernadas (0,0), ou seja, o topo
+    this.findAllPostagens()
+    this.findAllTemas()
   }
+
+findAllPostagens(){
+  this.postagemService.getAllPostagens().subscribe((resp:Postagem[])=>{
+  this.listaPostagens=resp
+  })
+}
+
+findAllTemas(){
+  this.temaService.getAllTema().subscribe((resp:Tema[])=>{
+  this.listaTemas=resp
+  })
+}
+
+findByIdTema(){
+  this.temaService.getByIdTema(this.idTema).subscribe((resp:Tema)=>{
+    this.tema=resp
+  })
+}
+
+publicar(){
+  this.tema.id=this.idTema
+  this.postagem.tema=this.tema
+
+  if(this.postagem.titulo == null||this.postagem.texto==null||this.postagem.tema){
+    alert('Preencha todos os campos da publicação!')
+  }else{
+    this.postagemService.postPostagem(this.postagem).subscribe((resp:Postagem)=>{
+      this.postagem=resp
+      this.postagem=new Postagem()
+      alert('Postagem realizada com sucesso!')
+      this.findAllPostagens
+    })
+  }
+}
+
 
 }

@@ -9,6 +9,16 @@
           <div class="navbar-nav">
             <a class="texto text-white nav-item nav-link text-monospace text-uppercase font-weight-bold p-3" routerLink="/home">Home <span class="sr-only">(Página atual)</span></a>
             <a class="texto text-white nav-item nav-link text-monospace text-uppercase font-weight-bold p-3" routerLink="/feed">Feed</a> 
+
+            <div *ngIf = 'auth.btnSair()'>
+              <a class="texto text-white nav-item nav-link text-monospace text-uppercase font-weight-bold p-3" (click) = 'sair()'>Sair</a> 
+            </div>
+
+            <div *ngIf = 'auth.btnLogin()'>
+              <a class="texto text-white nav-item nav-link text-monospace text-uppercase font-weight-bold p-3" routerLink="/login">Login</a> 
+            </div>
+           
+            <a class="texto text-white nav-item nav-link text-monospace text-uppercase font-weight-bold p-3" routerLink="/cadastro">Cadastro</a> 
             <!--routerLink faz a função de href. Recebe o caminho de redirecionamento (/)-->
           </div>
         </div>
